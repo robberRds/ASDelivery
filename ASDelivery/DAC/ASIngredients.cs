@@ -27,8 +27,10 @@ namespace ASDelivery
         public abstract class lineNbr : PX.Data.BQL.BqlInt.Field<lineNbr> { }
         #endregion
         #region InventoryID
-        [Inventory(DisplayName = "Ingredient ID", Enabled = false)]
-        [PXForeignReference(typeof(Field<inventoryID>.IsRelatedTo<InventoryItem.inventoryID>))]
+        [PXDBInt(IsKey = true)]
+        [PXUIField(DisplayName = "Line Nbr.", Visible = true)]
+        //[Inventory(DisplayName = "Ingredient ID", Enabled = false)]
+        //[PXForeignReference(typeof(Field<inventoryID>.IsRelatedTo<InventoryItem.inventoryID>))]
         public virtual int? InventoryID { get; set; }
         public abstract class inventoryID : PX.Data.BQL.BqlInt.Field<inventoryID> { }
         #endregion
