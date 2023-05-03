@@ -28,7 +28,7 @@ namespace ASDelivery
         #endregion
         #region InventoryID
         [PXDBInt(IsKey = true)]
-        [PXUIField(DisplayName = "Line Nbr.", Visible = true)]
+        [PXUIField(DisplayName = "Inventory ID", Visible = true)]
         //[Inventory(DisplayName = "Ingredient ID", Enabled = false)]
         //[PXForeignReference(typeof(Field<inventoryID>.IsRelatedTo<InventoryItem.inventoryID>))]
         public virtual int? InventoryID { get; set; }

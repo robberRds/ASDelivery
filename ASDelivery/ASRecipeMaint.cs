@@ -5,8 +5,18 @@ using PX.Objects.IN;
 
 namespace ASDelivery
 {
-    public class ASRecipeMaint : PXGraph<ASRecipeMaint>
+
+    public class ASRecipeMaint : PXGraph<ASRecipeMaint, ASRecipe>
     {
+        #region Graph constructor
+        public ASRecipeMaint()
+        {
+            ASSetup setup = AutoNumSetup.Current;
+
+            //Action.AddMenuAction(Approve);
+            //Action.AddMenuAction(Reject);
+        }
+        #endregion
         public SelectFrom<ASRecipe>.View Recipe;
         public SelectFrom<ASIngredients>.View Ingredients;
 
@@ -14,6 +24,8 @@ namespace ASDelivery
 
         public PXSave<ASRecipe> Save;
         public PXCancel<ASRecipe> Cancel;
+
+        public PXSetup<ASSetup> AutoNumSetup;
 
     }
 }

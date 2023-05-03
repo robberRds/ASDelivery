@@ -12,21 +12,20 @@ namespace ASDelivery
         [PXDBString(50, IsKey = true, IsUnicode = true)]
         [PXDefault(PersistingCheck = PXPersistingCheck.NullOrBlank)]
         [PXUIField(DisplayName = "Ref Nbr.", Visibility = PXUIVisibility.SelectorVisible)]
-        //[AutoNumber(typeof(ASSetup.requestNumber), typeof(ASRecipe.createdDateTime))]
+        [AutoNumber(typeof(ASSetup.recipeNumbering), typeof(ASRecipe.createdDateTime))]
         [PXSelector(typeof(Search<ASRecipe.refNbr>))]
         public virtual string RefNbr { get; set; }
         public abstract class refNbr : PX.Data.BQL.BqlString.Field<refNbr> { }
         #endregion
-
         #region DishID
         [PXDBInt()]
-        [PXUIField(DisplayName = "Dish Name")]
+        [PXUIField(DisplayName = "Dish ID")]
         public virtual int? DishID { get; set; }
         public abstract class dishid : PX.Data.BQL.BqlInt.Field<dishid> { }
         #endregion
         #region Description
         [PXDBString(60, IsUnicode = true, InputMask = "")]
-        [PXUIField(DisplayName = "Description")]
+        [PXUIField(DisplayName = "Dish Name")]
         [PXDefault("")]
         public virtual string Description { get; set; }
         public abstract class description : PX.Data.BQL.BqlString.Field<description> { }
