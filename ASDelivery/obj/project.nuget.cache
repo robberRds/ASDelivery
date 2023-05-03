@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "5RjnOlU+7rHRgIEqVjKlX03s+f+cKiDp21T73DZC7F9kbl3jvF2qmHF/3OTo++DN1YmafGdektdnVJKNrmFB2w==",
+  "success": true,
+  "projectFilePath": "D:\\Acumatica ERP\\ASDelivery\\App_Data\\Projects\\ASDelivery\\ASDelivery\\ASDelivery.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\a0981\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
+    "C:\\Users\\a0981\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\a0981\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}
