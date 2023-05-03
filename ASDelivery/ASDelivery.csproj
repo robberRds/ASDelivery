@@ -61,6 +61,7 @@
     <Compile Include="DAC\ASRecipe.cs" />
     <Compile Include="DAC\ASIngredients.cs" />
     <Compile Include="ASSetupMaint.cs" />
+    <Compile Include="DAC\ASSetup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

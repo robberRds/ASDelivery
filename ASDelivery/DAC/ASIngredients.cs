@@ -28,10 +28,9 @@ namespace ASDelivery
         #endregion
         #region InventoryID
         [Inventory(DisplayName = "Ingredient ID", Enabled = false)]
-        [PXForeignReference(typeof(Field<freeItemID>.IsRelatedTo<InventoryItem.inventoryID>))]
-  
-        public virtual string InventoryCD { get; set; }
-        public abstract class inventoryCD : PX.Data.BQL.BqlString.Field<inventoryCD> { }
+        [PXForeignReference(typeof(Field<inventoryID>.IsRelatedTo<InventoryItem.inventoryID>))]
+        public virtual int? InventoryID { get; set; }
+        public abstract class inventoryID : PX.Data.BQL.BqlInt.Field<inventoryID> { }
         #endregion
         #region Description
         [PXDBString(60, IsUnicode = true, InputMask = "")]

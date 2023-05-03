@@ -8,10 +8,9 @@ namespace ASDelivery
     public class ASRecipeMaint : PXGraph<ASRecipeMaint>
     {
         public SelectFrom<ASRecipe>.View Recipe;
-        public SelectFrom<ASIngredients, Where<ASIngredients.refNbr.IsEqual<Current<ASRecipe.refNbr>>>>.View Ingredients;
+        public SelectFrom<ASIngredients>.View Ingredients;
 
-        public SelectFrom<ASIngredients,
-            LeftJoin<InventoryItem, On<InventoryItem.inventoryID.IsEqual<ASIngredients.inventoryCD>>>>
+        //public SelectFrom<ASIngredients,LeftJoin<InventoryItem, On<InventoryItem.inventoryID.IsEqual<ASIngredients.inventoryCD>>>> Ingr;
 
         public PXSave<ASRecipe> Save;
         public PXCancel<ASRecipe> Cancel;
