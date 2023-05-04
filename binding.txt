@@ -1,1 +1,1 @@
-D:\Acumatica ERP\ASDelivery\App_Data\Projects\ASDelivery
+D:\Artem\AcumaticaERP\ASDelivery\App_Data\Projects\ASDelivery
