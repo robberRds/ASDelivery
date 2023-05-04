@@ -6,7 +6,6 @@ using PX.Objects.IN;
 
 namespace ASDelivery
 {
-    [Serializable]
     [PXCacheName("ASIngredients")]
     public class ASIngredients : IBqlTable
     {

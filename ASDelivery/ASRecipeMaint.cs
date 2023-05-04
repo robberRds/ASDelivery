@@ -12,18 +12,20 @@ namespace ASDelivery
         public ASRecipeMaint()
         {
             ASSetup setup = AutoNumSetup.Current;
-
-            //Action.AddMenuAction(Approve);
-            //Action.AddMenuAction(Reject);
         }
         #endregion
+
         public SelectFrom<ASRecipe>.View Recipe;
-        public SelectFrom<ASIngredients>.View Ingredients;
+
+        public SelectFrom<ASIngredients>.
+            Where<ASIngredients.refNbr.
+                IsEqual<ASRecipe.refNbr.FromCurrent>>.
+            View Ingredients;
 
         //public SelectFrom<ASIngredients,LeftJoin<InventoryItem, On<InventoryItem.inventoryID.IsEqual<ASIngredients.inventoryCD>>>> Ingr;
 
-        public PXSave<ASRecipe> Save;
-        public PXCancel<ASRecipe> Cancel;
+        public new PXSave<ASRecipe> Save;
+        public new PXCancel<ASRecipe> Cancel;
 
         public PXSetup<ASSetup> AutoNumSetup;
 

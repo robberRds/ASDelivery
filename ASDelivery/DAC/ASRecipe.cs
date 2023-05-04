@@ -4,7 +4,6 @@ using PX.Objects.CS;
 
 namespace ASDelivery
 {
-    [Serializable]
     [PXCacheName("Recipe")]
     public class ASRecipe : IBqlTable
     {
