@@ -1,6 +1,10 @@
 using System;
 using PX.Data;
+using PX.Data.ReferentialIntegrity.Attributes;
+using PX.Objects.AR;
 using PX.Objects.CS;
+using PX.Objects.IN;
+using static ASDelivery.ASRecipe;
 
 namespace ASDelivery
 {
@@ -16,18 +20,30 @@ namespace ASDelivery
         public virtual string RefNbr { get; set; }
         public abstract class refNbr : PX.Data.BQL.BqlString.Field<refNbr> { }
         #endregion
-        #region DishID
-        [PXDBInt()]
-        [PXUIField(DisplayName = "Dish ID")]
-        public virtual int? DishID { get; set; }
-        public abstract class dishid : PX.Data.BQL.BqlInt.Field<dishid> { }
+        #region RecName
+        [PXDBString(50, IsUnicode = true, InputMask = "")]
+        [PXUIField(DisplayName = "Recipe Name")]
+        [PXDefault("")]
+        public virtual string RecName { get; set; }
+        public abstract class recName : PX.Data.BQL.BqlString.Field<recName> { }
         #endregion
-        #region Description
+        #region DishID
+        //[Inventory(DisplayName = "Ingredient ID", Enabled = false)]
+        //[PXForeignReference(typeof(Field<dishID>.IsRelatedTo<InventoryItem.inventoryID>))]
+        [Inventory(DisplayName = "Inventory ID")]
+        [PXDefault(typeof(ASRecipe.dishID))]
+        [PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASRecipe.dishID>>>>))]
+        //[PXDBInt()]
+        //[PXUIField(DisplayName = "Dish ID")]
+        public virtual int? DishID { get; set; }
+        public abstract class dishID : PX.Data.BQL.BqlInt.Field<dishID> { }
+        #endregion
+        #region DishCD
         [PXDBString(60, IsUnicode = true, InputMask = "")]
         [PXUIField(DisplayName = "Dish Name")]
         [PXDefault("")]
-        public virtual string Description { get; set; }
-        public abstract class description : PX.Data.BQL.BqlString.Field<description> { }
+        public virtual string DishCD { get; set; }
+        public abstract class dishCD : PX.Data.BQL.BqlString.Field<dishCD> { }
         #endregion
         #region RecipeLineCntr
         [PXDBInt()]

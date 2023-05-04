@@ -25,19 +25,19 @@ namespace ASDelivery
         public virtual int? LineNbr { get; set; }
         public abstract class lineNbr : PX.Data.BQL.BqlInt.Field<lineNbr> { }
         #endregion
-        #region InventoryID
+        #region IngredientsID
         [PXDBInt(IsKey = true)]
-        [PXUIField(DisplayName = "Inventory ID", Visible = true)]
+        [PXUIField(DisplayName = "Ingredients ID", Visible = true)]
         //[Inventory(DisplayName = "Ingredient ID", Enabled = false)]
         //[PXForeignReference(typeof(Field<inventoryID>.IsRelatedTo<InventoryItem.inventoryID>))]
-        public virtual int? InventoryID { get; set; }
-        public abstract class inventoryID : PX.Data.BQL.BqlInt.Field<inventoryID> { }
+        public virtual int? IngredientsID { get; set; }
+        public abstract class ingredientsID : PX.Data.BQL.BqlInt.Field<ingredientsID> { }
         #endregion
-        #region Description
+        #region IngredientsCD
         [PXDBString(60, IsUnicode = true, InputMask = "")]
-        [PXUIField(DisplayName = "Description")]
-        public virtual string Description { get; set; }
-        public abstract class description : PX.Data.BQL.BqlString.Field<description> { }
+        [PXUIField(DisplayName = "Ingredients CD")]
+        public virtual string IngredientsCD { get; set; }
+        public abstract class ingredientsCD : PX.Data.BQL.BqlString.Field<ingredientsCD> { }
         #endregion
         #region Count
         [PXDBInt()]
