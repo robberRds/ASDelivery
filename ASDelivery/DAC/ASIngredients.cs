@@ -36,7 +36,7 @@ namespace ASDelivery
         #region Count
         [PXDBInt()]
         [PXUIField(DisplayName = "Count")]
-        [PXDefault(0)]
+        [PXDefault(1)]       
         public virtual int? Count { get; set; }
         public abstract class count : PX.Data.BQL.BqlInt.Field<count> { }
         #endregion
