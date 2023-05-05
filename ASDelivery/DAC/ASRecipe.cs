@@ -1,5 +1,6 @@
 using System;
 using PX.Data;
+using PX.Data.BQL.Fluent;
 using PX.Data.ReferentialIntegrity.Attributes;
 using PX.Objects.AR;
 using PX.Objects.CS;
@@ -28,22 +29,11 @@ namespace ASDelivery
         public abstract class recName : PX.Data.BQL.BqlString.Field<recName> { }
         #endregion
         #region DishID
-        //[Inventory(DisplayName = "Ingredient ID", Enabled = false)]
-        //[PXForeignReference(typeof(Field<dishID>.IsRelatedTo<InventoryItem.inventoryID>))]
-        [Inventory(DisplayName = "Inventory ID")]
+        [Inventory(DisplayName = "Dish ID")]
         [PXDefault(typeof(ASRecipe.dishID))]
         [PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASRecipe.dishID>>>>))]
-        //[PXDBInt()]
-        //[PXUIField(DisplayName = "Dish ID")]
         public virtual int? DishID { get; set; }
         public abstract class dishID : PX.Data.BQL.BqlInt.Field<dishID> { }
-        #endregion
-        #region DishCD
-        [PXDBString(60, IsUnicode = true, InputMask = "")]
-        [PXUIField(DisplayName = "Dish Name")]
-        [PXDefault("")]
-        public virtual string DishCD { get; set; }
-        public abstract class dishCD : PX.Data.BQL.BqlString.Field<dishCD> { }
         #endregion
         #region RecipeLineCntr
         [PXDBInt()]
