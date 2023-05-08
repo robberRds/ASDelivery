@@ -32,8 +32,26 @@ namespace ASDelivery
         [Inventory(DisplayName = "Dish ID")]
         [PXDefault(typeof(ASRecipe.dishID))]
         [PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASRecipe.dishID>>>>))]
+        [PXSelector(typeof(Search<InventoryItem.inventoryID,
+            Where<InventoryItem.itemType, Equal<INItemTypes.finishedGood>>>),
+            SubstituteKey = typeof(InventoryItem.inventoryCD),
+            DescriptionField = typeof(InventoryItem.descr))]
         public virtual int? DishID { get; set; }
         public abstract class dishID : PX.Data.BQL.BqlInt.Field<dishID> { }
+        #endregion
+        #region Description
+        [PXDBString(255, IsUnicode = true, InputMask = "")]
+        [PXUIField(DisplayName = "Description")]
+        [PXDefault("")]
+        public virtual string Description { get; set; }
+        public abstract class description : PX.Data.BQL.BqlString.Field<description> { }
+        #endregion
+        #region IsActive
+        [PXDBBool]
+        [PXDefault(false, PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXUIField(DisplayName = "Active")]
+        public virtual bool? IsActive { get; set; }
+        public abstract class isActive : PX.Data.BQL.BqlBool.Field<isActive> { }
         #endregion
         #region RecipeLineCntr
         [PXDBInt()]

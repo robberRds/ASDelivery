@@ -29,6 +29,10 @@ namespace ASDelivery
         [Inventory(DisplayName = "Ingredients ID")]
         [PXDefault(typeof(ASIngredients.ingredientsID))]
         [PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASIngredients.ingredientsID>>>>))]
+        [PXSelector(typeof(Search<InventoryItem.inventoryID,
+            Where<InventoryItem.itemType, NotEqual<INItemTypes.finishedGood>>>),
+            SubstituteKey = typeof(InventoryItem.inventoryCD),
+            DescriptionField = typeof(InventoryItem.descr))]
         public virtual int? IngredientsID { get; set; }
         public abstract class ingredientsID : PX.Data.BQL.BqlInt.Field<ingredientsID> { }
 
