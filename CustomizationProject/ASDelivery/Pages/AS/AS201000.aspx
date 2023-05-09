@@ -17,17 +17,20 @@
             <px:PXSelector runat="server" ID="CstPXSelector3" DataField="RefNbr"></px:PXSelector>
             <px:PXTextEdit CommitChanges="True" runat="server" ID="PXTextEdit3" DataField="RecName"></px:PXTextEdit>
             <px:PXDateTimeEdit Enabled="False" Width="200" LabelWidth="" runat="server" ID="CstPXDateTimeEdit22" DataField="CreatedDateTime"></px:PXDateTimeEdit>
-            <px:PXCheckBox runat="server" ID="CstPXCheckBox25" DataField="IsActive" />
-            <px:PXLayoutRule runat="server" ID="CstLayoutRule17" ColumnSpan="2"></px:PXLayoutRule>
-            <px:PXTextEdit runat="server" ID="CstPXTextEdit24" DataField="Description"></px:PXTextEdit>
+            <px:PXCheckBox runat="server" ID="CstPXCheckBox25" DataField="IsActive"></px:PXCheckBox>
             <px:PXLayoutRule StartColumn="True" runat="server" ID="CstPXLayoutRule8" StartRow="False"></px:PXLayoutRule>
             <px:PXSegmentMask CommitChanges="True" runat="server" ID="CstPXSegmentMask17" DataField="DishID"></px:PXSegmentMask>
-            <px:PXTextEdit runat="server" ID="CstPXTextEdit21" DataField="DishID_InventoryItem_descr"></px:PXTextEdit>
+            <px:PXTextEdit TextMode="MultiLine" runat="server" ID="CstPXTextEdit21" DataField="DishID_InventoryItem_descr"></px:PXTextEdit>
+            <px:PXLayoutRule runat="server" ID="CstPXLayoutRule28" StartRow="True"></px:PXLayoutRule>
+            <px:PXLayoutRule runat="server" ID="CstLayoutRule17" ColumnSpan="2"></px:PXLayoutRule>
+            <px:PXTextEdit Height="40%" TextMode="MultiLine" runat="server" ID="CstPXTextEdit24" DataField="Description">
+	        <AutoSize Container="Window" ></AutoSize></px:PXTextEdit>
+
         </Template>
     </px:PXFormView>
 </asp:Content>
 <asp:Content ID="cont3" ContentPlaceHolderID="phG" runat="Server">
-    <px:PXGrid Height="" SkinID="Details" Width="100%" runat="server" ID="Ingredients">
+    <px:PXGrid AllowPaging="True" SkinID="Details" Width="100%" runat="server" ID="Ingredients">
         <Levels>
             <px:PXGridLevel DataMember="Ingredients">
                 <Columns>
@@ -37,6 +40,6 @@
                 </Columns>
             </px:PXGridLevel>
         </Levels>
-        <AutoSize Enabled="True"></AutoSize>
+        <AutoSize Container="Window" Enabled="True"></AutoSize>
     </px:PXGrid>
 </asp:Content>
