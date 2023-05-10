@@ -25,23 +25,22 @@ namespace ASDelivery
         public virtual int? LineNbr { get; set; }
         public abstract class lineNbr : PX.Data.BQL.BqlInt.Field<lineNbr> { }
         #endregion
-        #region InventoryID
-        [PXDBInt(IsKey = true)]
-        [PXUIField(DisplayName = "Inventory ID", Visible = true)]
-        //[Inventory(DisplayName = "Ingredient ID", Enabled = false)]
-        //[PXForeignReference(typeof(Field<inventoryID>.IsRelatedTo<InventoryItem.inventoryID>))]
-        public virtual int? InventoryID { get; set; }
-        public abstract class inventoryID : PX.Data.BQL.BqlInt.Field<inventoryID> { }
-        #endregion
-        #region Description
-        [PXDBString(60, IsUnicode = true, InputMask = "")]
-        [PXUIField(DisplayName = "Description")]
-        public virtual string Description { get; set; }
-        public abstract class description : PX.Data.BQL.BqlString.Field<description> { }
+        #region IngredientsID
+        [Inventory(DisplayName = "Ingredients ID")]
+        [PXDefault(typeof(ASIngredients.ingredientsID))]
+        [PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASIngredients.ingredientsID>>>>))]
+        [PXSelector(typeof(Search<InventoryItem.inventoryID,
+            Where<InventoryItem.itemType, Equal<INItemTypes.component>>>),
+            SubstituteKey = typeof(InventoryItem.inventoryCD),
+            DescriptionField = typeof(InventoryItem.descr))]
+        public virtual int? IngredientsID { get; set; }
+        public abstract class ingredientsID : PX.Data.BQL.BqlInt.Field<ingredientsID> { }
+
         #endregion
         #region Count
         [PXDBInt()]
         [PXUIField(DisplayName = "Count")]
+        [PXDefault(1)]       
         public virtual int? Count { get; set; }
         public abstract class count : PX.Data.BQL.BqlInt.Field<count> { }
         #endregion

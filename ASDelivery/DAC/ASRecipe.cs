@@ -1,6 +1,11 @@
 using System;
 using PX.Data;
+using PX.Data.BQL.Fluent;
+using PX.Data.ReferentialIntegrity.Attributes;
+using PX.Objects.AR;
 using PX.Objects.CS;
+using PX.Objects.IN;
+using static ASDelivery.ASRecipe;
 
 namespace ASDelivery
 {
@@ -16,18 +21,37 @@ namespace ASDelivery
         public virtual string RefNbr { get; set; }
         public abstract class refNbr : PX.Data.BQL.BqlString.Field<refNbr> { }
         #endregion
+        #region RecName
+        [PXDBString(50, IsUnicode = true, InputMask = "")]
+        [PXUIField(DisplayName = "Recipe Name")]
+        [PXDefault("")]
+        public virtual string RecName { get; set; }
+        public abstract class recName : PX.Data.BQL.BqlString.Field<recName> { }
+        #endregion
         #region DishID
-        [PXDBInt()]
-        [PXUIField(DisplayName = "Dish ID")]
+        [Inventory(DisplayName = "Dish ID")]
+        [PXDefault(typeof(ASRecipe.dishID))]
+        [PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASRecipe.dishID>>>>))]
+        [PXSelector(typeof(Search<InventoryItem.inventoryID,
+            Where<InventoryItem.itemType, Equal<INItemTypes.finishedGood>>>),
+            SubstituteKey = typeof(InventoryItem.inventoryCD),
+            DescriptionField = typeof(InventoryItem.descr))]
         public virtual int? DishID { get; set; }
-        public abstract class dishid : PX.Data.BQL.BqlInt.Field<dishid> { }
+        public abstract class dishID : PX.Data.BQL.BqlInt.Field<dishID> { }
         #endregion
         #region Description
-        [PXDBString(60, IsUnicode = true, InputMask = "")]
-        [PXUIField(DisplayName = "Dish Name")]
+        [PXDBString(255, IsUnicode = true, InputMask = "")]
+        [PXUIField(DisplayName = "Description")]
         [PXDefault("")]
         public virtual string Description { get; set; }
         public abstract class description : PX.Data.BQL.BqlString.Field<description> { }
+        #endregion
+        #region IsActive
+        [PXDBBool]
+        [PXDefault(false, PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXUIField(DisplayName = "Active")]
+        public virtual bool? IsActive { get; set; }
+        public abstract class isActive : PX.Data.BQL.BqlBool.Field<isActive> { }
         #endregion
         #region RecipeLineCntr
         [PXDBInt()]
