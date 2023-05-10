@@ -1,71 +1,524 @@
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <SchemaVersion>2.0</SchemaVersion>
-        <ProjectGuid>{9BC6D61A-5D4B-4D57-BC6B-5E3F9D04377E}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>ASDelivery</RootNamespace>
-        <AssemblyName>ASDelivery</AssemblyName>
-        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
-        <TargetFrameworkProfile />
-        <WarningLevel>3</WarningLevel>
-        <FileVersion>22.203.0043</FileVersion>
-        <InformationalVersion>22.203.0043</InformationalVersion>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="PX.Common">
-            <HintPath>..\..\..\..\Bin\PX.Common.dll</HintPath>
-        </Reference>
-        <Reference Include="PX.Common.Std">
-            <HintPath>..\..\..\..\Bin\PX.Common.Std.dll</HintPath>
-        </Reference>
-        <Reference Include="PX.CS.Contracts">
-            <HintPath>..\..\..\..\Bin\PX.CS.Contracts.dll</HintPath>
-        </Reference>
-        <Reference Include="PX.Data">
-            <HintPath>..\..\..\..\Bin\PX.Data.dll</HintPath>
-        </Reference>
-        <Reference Include="PX.Objects">
-            <HintPath>..\..\..\..\Bin\PX.Objects.DLL</HintPath>
-        </Reference>
-        <Reference Include="System" />
-        <Reference Include="System.Core">
-            <RequiredTargetFramework>3.5</RequiredTargetFramework>
-        </Reference>
-        <Reference Include="System.Xml" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Examples.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
-            <Version>5.0.0</Version>
-        </PackageReference>
-        <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
-            <Version>5.0.0</Version>
-        </PackageReference>
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9BC6D61A-5D4B-4D57-BC6B-5E3F9D04377E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ASDelivery</RootNamespace>
+    <AssemblyName>ASDelivery</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <WarningLevel>3</WarningLevel>
+    <FileVersion>22.203.0043</FileVersion>
+    <InformationalVersion>22.203.0043</InformationalVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PX.Common">
+      <HintPath>..\..\..\..\Bin\PX.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Common.Std">
+      <HintPath>..\..\..\..\Bin\PX.Common.Std.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.CS.Contracts">
+      <HintPath>..\..\..\..\Bin\PX.CS.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Data">
+      <HintPath>..\..\..\..\Bin\PX.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Data.BQL.Fluent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Bin\PX.Data.BQL.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Objects">
+      <HintPath>..\..\..\..\Bin\PX.Objects.DLL</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASRecipeMaint.cs" />
+    <Compile Include="ASSetupMaint.cs" />
+    <Compile Include="DAC\ASIngredients.cs" />
+    <Compile Include="DAC\ASRecipe.cs" />
+    <Compile Include="DAC\ASSetup.cs" />
+    <Compile Include="Examples.cs" />
+    <Compile Include="ASPreparationMaint.cs" />
+    <Compile Include="DAC\ASPreparation.cs" />
+    <Compile Include="DAC\ASOrder.cs" />
+    <Compile Include="Helper\Messages.cs" />
+    <Compile Include="Helper\Constants.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="DAC\ASHistory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Workflows\ASPreparationWorkflow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>5.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Antlr4.Runtime.dll" />
+    <Content Include="bin\Debug\ASDelivery.dll" />
+    <Content Include="bin\Debug\ASDelivery.pdb" />
+    <Content Include="bin\Debug\Autofac.dll" />
+    <Content Include="bin\Debug\Autofac.Extensions.DependencyInjection.dll" />
+    <Content Include="bin\Debug\Autofac.Extras.CommonServiceLocator.dll" />
+    <Content Include="bin\Debug\Autofac.Integration.Owin.dll" />
+    <Content Include="bin\Debug\Autofac.Integration.WebApi.dll" />
+    <Content Include="bin\Debug\Autofac.Integration.WebApi.Owin.dll" />
+    <Content Include="bin\Debug\AutofacSerilogIntegration.dll" />
+    <Content Include="bin\Debug\AutoMapper.dll" />
+    <Content Include="bin\Debug\AWSSDK.Core.dll" />
+    <Content Include="bin\Debug\AWSSDK.S3.dll" />
+    <Content Include="bin\Debug\CommonServiceLocator.dll" />
+    <Content Include="bin\Debug\CsvHelper.dll" />
+    <Content Include="bin\Debug\de\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\de\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\de\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\de\PdfSharp.resources.dll" />
+    <Content Include="bin\Debug\de\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\DotNetOpenAuth.Core.dll" />
+    <Content Include="bin\Debug\DotNetOpenAuth.OpenId.dll" />
+    <Content Include="bin\Debug\DotNetOpenAuth.OpenId.RelyingParty.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\es\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\fr\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\fr\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\fr\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\fr\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\HtmlAgilityPack.dll" />
+    <Content Include="bin\Debug\IdentityModel.dll" />
+    <Content Include="bin\Debug\it\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\it\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\it\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\it\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\ja\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\ja\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\ja\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\ja\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\ko\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\ko\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\ko\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\ko\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.SessionState.SessionStateModule.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNet.SignalR.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Antiforgery.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Authentication.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Authentication.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Authorization.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Authorization.Policy.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Cors.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Cryptography.Internal.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.DataProtection.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.DataProtection.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Diagnostics.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Hosting.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Html.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Http.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Http.Extensions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Http.Features.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.JsonPatch.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.ApiExplorer.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.Cors.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.DataAnnotations.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.Formatters.Json.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.Razor.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.RazorPages.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.TagHelpers.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Mvc.ViewFeatures.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Razor.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Razor.Language.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Razor.Runtime.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.ResponseCompression.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Routing.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.Routing.dll" />
+    <Content Include="bin\Debug\Microsoft.AspNetCore.WebUtilities.dll" />
+    <Content Include="bin\Debug\Microsoft.Azure.KeyVault.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="bin\Debug\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\Debug\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\Debug\Microsoft.CodeAnalysis.Razor.dll" />
+    <Content Include="bin\Debug\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.Edm.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.OData.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.Schema.ScriptDom.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.Schema.ScriptDom.Sql.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.Services.Client.dll" />
+    <Content Include="bin\Debug\Microsoft.DotNet.PlatformAbstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Configuration.Binder.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Configuration.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Configuration.EnvironmentVariables.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Configuration.FileExtensions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.DependencyInjection.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.DependencyModel.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.FileProviders.Composite.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.FileProviders.Physical.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Hosting.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Http.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Localization.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Localization.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Logging.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.ObjectPool.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Options.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Primitives.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.WebEncoders.dll" />
+    <Content Include="bin\Debug\Microsoft.Graph.Core.dll" />
+    <Content Include="bin\Debug\Microsoft.Graph.dll" />
+    <Content Include="bin\Debug\Microsoft.Identity.Client.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Clients.ActiveDirectory.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Logging.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Tokens.dll" />
+    <Content Include="bin\Debug\Microsoft.Net.Http.Headers.dll" />
+    <Content Include="bin\Debug\Microsoft.Owin.dll" />
+    <Content Include="bin\Debug\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Debug\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Debug\Microsoft.Win32.Registry.dll" />
+    <Content Include="bin\Debug\Microsoft.WindowsAzure.Storage.dll" />
+    <Content Include="bin\Debug\Monads.dll" />
+    <Content Include="bin\Debug\MySqlConnector.dll" />
+    <Content Include="bin\Debug\Namotion.Reflection.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.Bson.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Owin.dll" />
+    <Content Include="bin\Debug\PdfSharp.dll" />
+    <Content Include="bin\Debug\PX.AddressValidator.dll" />
+    <Content Include="bin\Debug\PX.AddressValidator.pdb" />
+    <Content Include="bin\Debug\PX.Api.ContractBased.Common.dll" />
+    <Content Include="bin\Debug\PX.Api.ContractBased.Common.pdb" />
+    <Content Include="bin\Debug\PX.Api.ContractBased.dll" />
+    <Content Include="bin\Debug\PX.Api.ContractBased.pdb" />
+    <Content Include="bin\Debug\PX.Api.Mobile.Model.dll" />
+    <Content Include="bin\Debug\PX.Api.Mobile.Model.pdb" />
+    <Content Include="bin\Debug\PX.Api.Shared.dll" />
+    <Content Include="bin\Debug\PX.Api.Shared.pdb" />
+    <Content Include="bin\Debug\PX.Api.Web.dll" />
+    <Content Include="bin\Debug\PX.Api.Web.pdb" />
+    <Content Include="bin\Debug\PX.Api.Webhooks.dll" />
+    <Content Include="bin\Debug\PX.Api.Webhooks.pdb" />
+    <Content Include="bin\Debug\PX.Api.Webhooks.xml" />
+    <Content Include="bin\Debug\PX.Archiver.dll" />
+    <Content Include="bin\Debug\PX.Archiver.pdb" />
+    <Content Include="bin\Debug\PX.Archiver.xml" />
+    <Content Include="bin\Debug\PX.AspNetCore.Abstractions.dll" />
+    <Content Include="bin\Debug\PX.AspNetCore.Abstractions.pdb" />
+    <Content Include="bin\Debug\PX.AspNetCore.dll" />
+    <Content Include="bin\Debug\PX.AspNetCore.pdb" />
+    <Content Include="bin\Debug\PX.AspNetCore3.Backport.dll" />
+    <Content Include="bin\Debug\PX.AspNetCore3.Backport.pdb" />
+    <Content Include="bin\Debug\PX.AssemblyPatcher.dll" />
+    <Content Include="bin\Debug\PX.AssemblyPatcher.pdb" />
+    <Content Include="bin\Debug\PX.BankFeed.dll" />
+    <Content Include="bin\Debug\PX.BankFeed.pdb" />
+    <Content Include="bin\Debug\PX.BarcodeProcessing.dll" />
+    <Content Include="bin\Debug\PX.BarcodeProcessing.pdb" />
+    <Content Include="bin\Debug\PX.BarcodeProcessing.xml" />
+    <Content Include="bin\Debug\PX.BulkInsert.dll" />
+    <Content Include="bin\Debug\PX.BulkInsert.pdb" />
+    <Content Include="bin\Debug\PX.BulkInsert.xml" />
+    <Content Include="bin\Debug\PX.BusinessProcess.dll" />
+    <Content Include="bin\Debug\PX.BusinessProcess.pdb" />
+    <Content Include="bin\Debug\PX.BusinessProcess.xml" />
+    <Content Include="bin\Debug\PX.CarrierService.dll" />
+    <Content Include="bin\Debug\PX.CarrierService.pdb" />
+    <Content Include="bin\Debug\PX.CCProcessingBase.dll" />
+    <Content Include="bin\Debug\PX.CCProcessingBase.pdb" />
+    <Content Include="bin\Debug\PX.CCProcessingBase.xml" />
+    <Content Include="bin\Debug\PX.CloudServices.Abstractions.dll" />
+    <Content Include="bin\Debug\PX.CloudServices.Abstractions.pdb" />
+    <Content Include="bin\Debug\PX.CloudServices.DocumentRecognition.dll" />
+    <Content Include="bin\Debug\PX.CloudServices.DocumentRecognition.pdb" />
+    <Content Include="bin\Debug\PX.Common.dll" />
+    <Content Include="bin\Debug\PX.Common.Mail.dll" />
+    <Content Include="bin\Debug\PX.Common.Mail.pdb" />
+    <Content Include="bin\Debug\PX.Common.Parser.dll" />
+    <Content Include="bin\Debug\PX.Common.Parser.pdb" />
+    <Content Include="bin\Debug\PX.Common.pdb" />
+    <Content Include="bin\Debug\PX.Common.Std.dll" />
+    <Content Include="bin\Debug\PX.Common.Std.pdb" />
+    <Content Include="bin\Debug\PX.Common.Std.xml" />
+    <Content Include="bin\Debug\PX.Common.xml" />
+    <Content Include="bin\Debug\PX.CS.Contracts.dll" />
+    <Content Include="bin\Debug\PX.CS.Contracts.pdb" />
+    <Content Include="bin\Debug\PX.Dashboards.Caching.dll" />
+    <Content Include="bin\Debug\PX.Dashboards.Caching.pdb" />
+    <Content Include="bin\Debug\PX.Dashboards.dll" />
+    <Content Include="bin\Debug\PX.Dashboards.pdb" />
+    <Content Include="bin\Debug\PX.Dashboards.Widgets.dll" />
+    <Content Include="bin\Debug\PX.Dashboards.Widgets.pdb" />
+    <Content Include="bin\Debug\PX.Dashboards.Widgets.xml" />
+    <Content Include="bin\Debug\PX.Dashboards.xml" />
+    <Content Include="bin\Debug\PX.Data.BQL.Fluent.dll" />
+    <Content Include="bin\Debug\PX.Data.BQL.Fluent.pdb" />
+    <Content Include="bin\Debug\PX.Data.BQL.Fluent.xml" />
+    <Content Include="bin\Debug\PX.Data.dll" />
+    <Content Include="bin\Debug\PX.Data.pdb" />
+    <Content Include="bin\Debug\PX.Data.xml" />
+    <Content Include="bin\Debug\PX.DataSync.Core.dll" />
+    <Content Include="bin\Debug\PX.DataSync.Core.pdb" />
+    <Content Include="bin\Debug\PX.DbServices.dll" />
+    <Content Include="bin\Debug\PX.DbServices.pdb" />
+    <Content Include="bin\Debug\PX.DbServices.xml" />
+    <Content Include="bin\Debug\PX.Export.dll" />
+    <Content Include="bin\Debug\PX.Export.pdb" />
+    <Content Include="bin\Debug\PX.Hosting.dll" />
+    <Content Include="bin\Debug\PX.Hosting.pdb" />
+    <Content Include="bin\Debug\PX.Hosting.SystemWeb.dll" />
+    <Content Include="bin\Debug\PX.Hosting.SystemWeb.pdb" />
+    <Content Include="bin\Debug\PX.LicensePolicy.dll" />
+    <Content Include="bin\Debug\PX.LicensePolicy.pdb" />
+    <Content Include="bin\Debug\PX.Logging.Interfaces.dll" />
+    <Content Include="bin\Debug\PX.Logging.Interfaces.pdb" />
+    <Content Include="bin\Debug\PX.MySql.dll" />
+    <Content Include="bin\Debug\PX.MySql.pdb" />
+    <Content Include="bin\Debug\PX.Objects.DLL" />
+    <Content Include="bin\Debug\PX.Objects.pdb" />
+    <Content Include="bin\Debug\PX.Objects.xml" />
+    <Content Include="bin\Debug\PX.OidcClient.dll" />
+    <Content Include="bin\Debug\PX.OidcClient.pdb" />
+    <Content Include="bin\Debug\PX.Olap.dll" />
+    <Content Include="bin\Debug\PX.Olap.pdb" />
+    <Content Include="bin\Debug\PX.Owin.Interfaces.dll" />
+    <Content Include="bin\Debug\PX.Owin.Interfaces.pdb" />
+    <Content Include="bin\Debug\PX.PushNotifications.dll" />
+    <Content Include="bin\Debug\PX.PushNotifications.pdb" />
+    <Content Include="bin\Debug\PX.PushNotifications.xml" />
+    <Content Include="bin\Debug\PX.Reports.ARm.dll" />
+    <Content Include="bin\Debug\PX.Reports.ARm.pdb" />
+    <Content Include="bin\Debug\PX.Reports.dll" />
+    <Content Include="bin\Debug\PX.Reports.pdb" />
+    <Content Include="bin\Debug\PX.SmsProvider.Core.dll" />
+    <Content Include="bin\Debug\PX.SmsProvider.Core.pdb" />
+    <Content Include="bin\Debug\PX.SmsProvider.UI.dll" />
+    <Content Include="bin\Debug\PX.SmsProvider.UI.pdb" />
+    <Content Include="bin\Debug\PX.SmsProvider.UI.xml" />
+    <Content Include="bin\Debug\PX.TaxProvider.dll" />
+    <Content Include="bin\Debug\PX.TaxProvider.pdb" />
+    <Content Include="bin\Debug\PX.Web.Customization.Abstractions.dll" />
+    <Content Include="bin\Debug\PX.Web.Customization.Abstractions.pdb" />
+    <Content Include="bin\Debug\PX.Web.Customization.dll" />
+    <Content Include="bin\Debug\PX.Web.Customization.MSILEdit.dll" />
+    <Content Include="bin\Debug\PX.Web.Customization.MSILEdit.pdb" />
+    <Content Include="bin\Debug\PX.Web.Customization.pdb" />
+    <Content Include="bin\Debug\PX.Web.Customization.xml" />
+    <Content Include="bin\Debug\PX.Web.UI.dll" />
+    <Content Include="bin\Debug\PX.Web.UI.Frameset.dll" />
+    <Content Include="bin\Debug\PX.Web.UI.Frameset.pdb" />
+    <Content Include="bin\Debug\PX.Web.UI.Frameset.xml" />
+    <Content Include="bin\Debug\PX.Web.UI.pdb" />
+    <Content Include="bin\Debug\Remotion.Linq.dll" />
+    <Content Include="bin\Debug\Renci.SshNet.dll" />
+    <Content Include="bin\Debug\RestSharp.dll" />
+    <Content Include="bin\Debug\ru\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\ru\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\ru\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\ru\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\Serilog.dll" />
+    <Content Include="bin\Debug\Serilog.Extensions.Logging.dll" />
+    <Content Include="bin\Debug\SerilogTimings.dll" />
+    <Content Include="bin\Debug\Swashbuckle.Core.dll" />
+    <Content Include="bin\Debug\System.Buffers.dll" />
+    <Content Include="bin\Debug\System.Collections.Immutable.dll" />
+    <Content Include="bin\Debug\System.Data.SqlClient.dll" />
+    <Content Include="bin\Debug\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\Debug\System.Drawing.Common.dll" />
+    <Content Include="bin\Debug\System.IdentityModel.Tokens.Jwt.dll" />
+    <Content Include="bin\Debug\System.IdentityModel.Tokens.ValidatingIssuerNameRegistry.dll" />
+    <Content Include="bin\Debug\System.Interactive.Async.dll" />
+    <Content Include="bin\Debug\System.Linq.Async.dll" />
+    <Content Include="bin\Debug\System.Memory.dll" />
+    <Content Include="bin\Debug\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\Debug\System.Net.Http.Json.dll" />
+    <Content Include="bin\Debug\System.Numerics.Vectors.dll" />
+    <Content Include="bin\Debug\System.Reactive.dll" />
+    <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\Debug\System.Security.Cryptography.Pkcs.dll" />
+    <Content Include="bin\Debug\System.Security.Cryptography.Xml.dll" />
+    <Content Include="bin\Debug\System.Security.Permissions.dll" />
+    <Content Include="bin\Debug\System.Spatial.dll" />
+    <Content Include="bin\Debug\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\Debug\System.Text.Encodings.Web.dll" />
+    <Content Include="bin\Debug\System.Text.Json.dll" />
+    <Content Include="bin\Debug\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\Debug\System.ValueTuple.dll" />
+    <Content Include="bin\Debug\System.Web.Cors.dll" />
+    <Content Include="bin\Debug\System.Web.Http.Cors.dll" />
+    <Content Include="bin\Debug\System.Web.Http.dll" />
+    <Content Include="bin\Debug\System.Web.Http.Owin.dll" />
+    <Content Include="bin\Debug\System.Web.Mvc.dll" />
+    <Content Include="bin\Debug\System.Web.Razor.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\Debug\zh-Hans\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\zh-Hans\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\zh-Hans\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\zh-Hans\System.Spatial.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\Microsoft.Data.Services.Client.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\System.Spatial.resources.dll" />
+    <Content Include="obj\Debug\ASDelivery.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\ASDelivery.dll" />
+    <Content Include="obj\Debug\ASDelivery.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\PX.Api.ContractBased.dll.config" />
+    <None Include="bin\Debug\PX.Api.Shared.dll.config" />
+    <None Include="bin\Debug\PX.Api.Webhooks.dll.config" />
+    <None Include="bin\Debug\PX.BusinessProcess.dll.config" />
+    <None Include="bin\Debug\PX.Common.dll.config" />
+    <None Include="bin\Debug\PX.Dashboards.Caching.dll.config" />
+    <None Include="bin\Debug\PX.Dashboards.dll.config" />
+    <None Include="bin\Debug\PX.Dashboards.Widgets.dll.config" />
+    <None Include="bin\Debug\PX.Data.BQL.Fluent.dll.config" />
+    <None Include="bin\Debug\PX.Data.dll.config" />
+    <None Include="bin\Debug\PX.DataSync.Core.dll.config" />
+    <None Include="bin\Debug\PX.LicensePolicy.dll.config" />
+    <None Include="bin\Debug\PX.MySql.dll.config" />
+    <None Include="bin\Debug\PX.Objects.dll.config" />
+    <None Include="bin\Debug\PX.Olap.dll.config" />
+    <None Include="bin\Debug\PX.PushNotifications.dll.config" />
+    <None Include="bin\Debug\PX.SmsProvider.Core.dll.config" />
+    <None Include="bin\Debug\PX.SmsProvider.UI.dll.config" />
+    <None Include="bin\Debug\PX.Web.UI.dll.config" />
+    <None Include="bin\Debug\PX.Web.UI.Frameset.dll.config" />
+    <None Include="obj\ASDelivery.csproj.nuget.dgspec.json" />
+    <None Include="obj\ASDelivery.csproj.nuget.g.props" />
+    <None Include="obj\ASDelivery.csproj.nuget.g.targets" />
+    <None Include="obj\Debug\ASDelivery.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\ASDelivery.csproj.CopyComplete" />
+    <None Include="obj\Debug\ASDelivery.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\_IsIncrementalBuild" />
+    <None Include="obj\project.assets.json" />
+    <None Include="obj\project.nuget.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9BC6D61A-5D4B-4D57-BC6B-5E3F9D04377E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ASDelivery</RootNamespace>
+    <AssemblyName>ASDelivery</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <WarningLevel>3</WarningLevel>
+    <FileVersion>22.203.0043</FileVersion>
+    <InformationalVersion>22.203.0043</InformationalVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PX.Common">
+      <HintPath>..\..\..\..\Bin\PX.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Common.Std">
+      <HintPath>..\..\..\..\Bin\PX.Common.Std.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.CS.Contracts">
+      <HintPath>..\..\..\..\Bin\PX.CS.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Data">
+      <HintPath>..\..\..\..\Bin\PX.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Data.BQL.Fluent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Bin\PX.Data.BQL.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Objects">
+      <HintPath>..\..\..\..\Bin\PX.Objects.DLL</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ASRecipeMaint.cs" />
+    <Compile Include="DAC\ASRecipe.cs" />
+    <Compile Include="DAC\ASIngredients.cs" />
+    <Compile Include="ASSetupMaint.cs" />
+    <Compile Include="DAC\ASSetup.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>5.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
+    <Folder Include="Workflow\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <! To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
