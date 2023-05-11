@@ -16,7 +16,7 @@ namespace ASDelivery
 {
     using State = ARDocStatus;
     using Self = ARInvoiceEntry_WorkflowExt;
-    using States = ARRegisterExt1.States;
+    using States = ARRegisterExt.States;
     public class ARInvoiceEntry_WorkflowExt : PXGraphExtension<ARInvoiceEntry_Workflow, ARInvoiceEntry>
     {
         public static bool IsActive()
