@@ -10,6 +10,7 @@ namespace ASDelivery
     {
         public const string OnHold = "OH";
         public const string Open = "OP";
+        public const string Canceled = "OP";
         public const string Cooking = "CG";
         public const string Cooked = "CD";
         public const string Delivering = "DG";

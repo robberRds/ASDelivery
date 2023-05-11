@@ -12,39 +12,13 @@ using static PX.Objects.AR.ARInvoiceEntry_Workflow;
 using PX.Objects.Common;
 using System.Collections;
 
-namespace ASDelivery.Workflow
+namespace ASDelivery
 {
     using State = ARDocStatus;
+    using Self = ARInvoiceEntry_WorkflowExt;
+    using States = ARRegisterExt1.States;
     public class ARInvoiceEntry_WorkflowExt : PXGraphExtension<ARInvoiceEntry_Workflow, ARInvoiceEntry>
     {
-
-        #region Constants
-        public static class States
-        {
-            public const string Cooking = ASDeliveryConstants.Cooking;
-            public const string Cooked = ASDeliveryConstants.Cooked;
-            public const string Delivering = ASDeliveryConstants.Delivering;
-            public const string Delivered = ASDeliveryConstants.Delivered;
-
-            public class cooking : PX.Data.BQL.BqlString.Constant<cooking>
-            {
-                public cooking() : base(Cooking) { }
-            }
-            public class cooked : PX.Data.BQL.BqlString.Constant<cooked>
-            {
-                public cooked() : base(Cooked) { }
-            }
-            public class delivering : PX.Data.BQL.BqlString.Constant<delivering>
-            {
-                public delivering() : base(Delivering) { }
-            }
-            public class delivered : PX.Data.BQL.BqlString.Constant<delivered>
-            {
-                public delivered() : base(Delivered) { }
-            }
-        }
-
-        #endregion
         public static bool IsActive()
         {
             return true;
@@ -60,30 +34,30 @@ namespace ASDelivery.Workflow
             #endregion
 
             var holdAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.onHold, a => a
-                    .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.onHold, a => a
+                .WithCategory(processingCategory));
             var openAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.open, a => a
-                    .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.open, a => a
+                .WithCategory(processingCategory));
             var cancelAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.cancel, a => a
-                    .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.cancel, a => a
+                .WithCategory(processingCategory));
             var cookingAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.cooking, a => a
-                    .WithCategory(processingCategory)
-                    .PlaceAfter(g => g.payInvoice));
+                .CreateExisting<Self>(g => g.cooking, a => a
+                .WithCategory(processingCategory)
+                .PlaceAfter(g => g.payInvoice));
             var cookedAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.cooked, a => a
-                    .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.cooked, a => a
+                .WithCategory(processingCategory));
             var deliveringAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.delivering, a => a
-                    .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.delivering, a => a
+                .WithCategory(processingCategory));
             var deliveredAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.delivered, a => a
-                    .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.delivered, a => a
+                .WithCategory(processingCategory));
             var closeAction = context.ActionDefinitions
-                .CreateExisting<ARInvoiceEntry_WorkflowExt>(g => g.close, a => a
-                    .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.close, a => a
+                .WithCategory(processingCategory));
 
             config.GetScreenConfigurationContext<ARInvoiceEntry, ARInvoice>().UpdateScreenConfigurationFor(
                 screen =>
@@ -92,7 +66,7 @@ namespace ASDelivery.Workflow
                         flow
                        .WithFlowStates(fss =>
                        {
-                           fss.Add<State.hold>(flowState =>
+                           fss.Add<States.onHold>(flowState =>
                            {
                                return flowState
                                    .IsInitial()
@@ -102,7 +76,7 @@ namespace ASDelivery.Workflow
                                            .WithConnotation(ActionConnotation.Success));
                                    });
                            });
-                           fss.Add<State.open>(flowState =>
+                           fss.Add<States.open>(flowState =>
                            {
                                return flowState
                                    .WithActions(actions =>
@@ -111,7 +85,7 @@ namespace ASDelivery.Workflow
                                        actions.Add(cookingAction, a => a.IsDuplicatedInToolbar());
                                    });
                            });
-                           fss.Add<State.canceled>(flowState =>
+                           fss.Add<States.canceled>(flowState =>
                            {
                                return flowState
                                    .WithActions(actions =>
@@ -158,38 +132,38 @@ namespace ASDelivery.Workflow
                        })
                        .WithTransitions(transitions =>
                        {
-                           transitions.AddGroupFrom<State.hold>(ts =>
+                           transitions.AddGroupFrom<States.onHold>(ts =>
                            {
-                               ts.Add(t => t.To<State.open>().IsTriggeredOn(openAction));
+                               ts.Add(t => t.To<States.open>().IsTriggeredOn(openAction));
                            });
-                           transitions.AddGroupFrom<State.open>(ts =>
+                           transitions.AddGroupFrom<States.open>(ts =>
                            {
-                               ts.Add(t => t.To<State.hold>().IsTriggeredOn(holdAction));
+                               ts.Add(t => t.To<States.onHold>().IsTriggeredOn(holdAction));
                                ts.Add(t => t.To<States.cooking>().IsTriggeredOn(cookingAction));
                            });
-                           transitions.AddGroupFrom<State.canceled>(ts =>
+                           transitions.AddGroupFrom<States.canceled>(ts =>
                            {
-                               ts.Add(t => t.To<State.hold>().IsTriggeredOn(holdAction));
-                               ts.Add(t => t.To<State.closed>().IsTriggeredOn(closeAction));
+                               ts.Add(t => t.To<States.onHold>().IsTriggeredOn(holdAction));
+                               ts.Add(t => t.To<States.closed>().IsTriggeredOn(closeAction));
                            });
                            transitions.AddGroupFrom<States.cooking>(ts =>
                            {
                                ts.Add(t => t.To<States.cooked>().IsTriggeredOn(cookedAction));
-                               ts.Add(t => t.To<State.canceled>().IsTriggeredOn(cancelAction));
+                               ts.Add(t => t.To<States.canceled>().IsTriggeredOn(cancelAction));
                            });
                            transitions.AddGroupFrom<States.cooked>(ts =>
                            {
                                ts.Add(t => t.To<States.delivering>().IsTriggeredOn(deliveringAction));
-                               ts.Add(t => t.To<State.canceled>().IsTriggeredOn(cancelAction));
+                               ts.Add(t => t.To<States.canceled>().IsTriggeredOn(cancelAction));
                            });
                            transitions.AddGroupFrom<States.delivering>(ts =>
                            {
                                ts.Add(t => t.To<States.delivered>().IsTriggeredOn(deliveredAction));
-                               ts.Add(t => t.To<State.canceled>().IsTriggeredOn(cancelAction));
+                               ts.Add(t => t.To<States.canceled>().IsTriggeredOn(cancelAction));
                            });
                            transitions.AddGroupFrom<States.delivered>(ts =>
                            {
-                               ts.Add(t => t.To<State.closed>().IsTriggeredOn(closeAction));
+                               ts.Add(t => t.To<States.closed>().IsTriggeredOn(closeAction));
                            });
                        })
                     )
