@@ -62,7 +62,6 @@
     <Compile Include="DAC\ASIngredients.cs" />
     <Compile Include="DAC\ASRecipe.cs" />
     <Compile Include="DAC\ASSetup.cs" />
-    <Compile Include="Examples.cs" />
     <Compile Include="ASPreparationMaint.cs" />
     <Compile Include="DAC\ASPreparation.cs" />
     <Compile Include="DAC\ASOrder.cs" />

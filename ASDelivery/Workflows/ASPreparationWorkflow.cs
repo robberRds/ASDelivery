@@ -67,9 +67,7 @@ namespace ASDelivery.Workflows
                             fss.Add<States.open>(flowState =>
                             {
                                 return flowState
-                                    .WithFieldStates(states =>
-                                    {
-                                    })
+                                    .WithFieldStates(states => {})
                                     .WithActions(actions => // Open Action
                                     {
                                         actions.Add(g => g.OpenAction, a => a.IsDuplicatedInToolbar());
@@ -101,38 +99,22 @@ namespace ASDelivery.Workflows
                         {
                             transitions.AddGroupFrom<States.onHold>(ts =>
                             {
-                                ts.Add(t => t.To<States.open>()
-                                    .IsTriggeredOn(g => g.OnHoldAction));
+                                ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OnHoldAction));
                             });
                             transitions.AddGroupFrom<States.open>(ts =>
                             {
-                                ts.Add(t => t.To<States.paused>()
-                                    .IsTriggeredOn(g => g.OpenAction));
-                            });
-                            transitions.AddGroupFrom<States.open>(ts =>
-                            {
-                                ts.Add(t => t.To<States.closed>()
-                                    .IsTriggeredOn(g => g.OpenAction));
+                                ts.Add(t => t.To<States.paused>().IsTriggeredOn(g => g.OpenAction));
+                                //ts.Add(t => t.To<States.closed>().IsTriggeredOn(g => g.ClosedAction));
                             });
                             transitions.AddGroupFrom<States.paused>(ts =>
                             {
-                                ts.Add(t => t.To<States.open>()
-                                    .IsTriggeredOn(g => g.PausedAction));
-                            });
-                            transitions.AddGroupFrom<States.paused>(ts =>
-                            {
-                                ts.Add(t => t.To<States.closed>()
-                                    .IsTriggeredOn(g => g.PausedAction));
+                                //ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
+                                //ts.Add(t => t.To<States.closed>().IsTriggeredOn(g => g.ClosedAction));
                             });
                             transitions.AddGroupFrom<States.closed>(ts =>
                             {
-                                ts.Add(t => t.To<States.onHold>()
-                                    .IsTriggeredOn(g => g.PausedAction));
-                            });
-                            transitions.AddGroupFrom<States.closed>(ts =>
-                            {
-                                ts.Add(t => t.To<States.open>()
-                                    .IsTriggeredOn(g => g.PausedAction));
+                                //ts.Add(t => t.To<States.onHold>().IsTriggeredOn(g => g.OnHoldAction));
+                                //ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
                             });
                         }))
                     .WithActions(actions => // Actions

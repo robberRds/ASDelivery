@@ -3,7 +3,9 @@
   <col name="CompanyID" type="Int" default="Zero" />
   <col name="RefNbr" type="NVarChar(15)" />
   <col name="DishID" type="Int" />
-  <col name="Description" type="NVarChar(60)" />
+  <col name="RecName" type="NVarChar(50)" />
+  <col name="IsActive" type="Bit" />
+  <col name="Description" type="NVarChar(MAX)" />
   <col name="RecipeLineCntr" type="Int" />
   <col name="CreatedByID" type="UniqueIdentifier" />
   <col name="CreatedByScreenID" type="Char(8)" />
@@ -20,6 +22,7 @@
   <index name="PK_ASRecipe" clustered="true" primary="true" unique="true">
     <col name="CompanyID" />
     <col name="RefNbr" />
+    <col name="DishID" />
   </index>
 </table>]]></CDATA>
 </Sql>

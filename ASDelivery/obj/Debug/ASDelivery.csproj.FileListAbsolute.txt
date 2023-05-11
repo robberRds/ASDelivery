@@ -189,4 +189,3 @@ D:\Artem\AcumaticaERP\ASDelivery\App_Data\Projects\ASDelivery\ASDelivery\obj\Deb
 D:\Artem\AcumaticaERP\ASDelivery\App_Data\Projects\ASDelivery\ASDelivery\obj\Debug\ASDelivery.csproj.CopyComplete
 D:\Artem\AcumaticaERP\ASDelivery\App_Data\Projects\ASDelivery\ASDelivery\obj\Debug\ASDelivery.dll
 D:\Artem\AcumaticaERP\ASDelivery\App_Data\Projects\ASDelivery\ASDelivery\obj\Debug\ASDelivery.pdb
-D:\Artem\AcumaticaERP\ASDelivery\App_Data\Projects\ASDelivery\ASDelivery\obj\Debug\ASDelivery.csproj.AssemblyReference.cache
