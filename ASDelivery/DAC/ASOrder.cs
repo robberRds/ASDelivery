@@ -8,17 +8,35 @@ namespace ASDelivery
     [PXCacheName("Order")]
     public class ASOrder : IBqlTable
     {
+        #region RefNbr
+        [PXDBString()]
+        [PXDefault(typeof(ASPreparation.refNbr))]
+        public virtual string RefNbr { get; set; }
+        public abstract class refNbr : PX.Data.BQL.BqlString.Field<refNbr> { }
+        #endregion
+
         #region OrderID
         [Inventory(DisplayName = "Dish")]
+        [PXDefault(typeof(ASOrder.orderID))]
+        [PXParent(typeof(Select<ASPreparation, Where<ASPreparation.refNbr, Equal<Current<refNbr>>>>))]
+        //[PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASOrder.orderID>>>>))]
+        [PXSelector(typeof(Search<InventoryItem.inventoryID,
+            Where<InventoryItem.itemType, Equal<INItemTypes.finishedGood>>>),
+            SubstituteKey = typeof(InventoryItem.inventoryCD),
+            DescriptionField = typeof(InventoryItem.descr))]
         public virtual int? OrderID { get; set; }
         public abstract class orderID : PX.Data.BQL.BqlInt.Field<orderID> { }
         #endregion
 
         #region RecipeID
-        [PXDBInt()]
+        [PXDBString()]
         [PXUIField(DisplayName = "Recipe")]
-        public virtual int? RecipeID { get; set; }
-        public abstract class recipeID : PX.Data.BQL.BqlInt.Field<recipeID> { }
+        [PXDefault(typeof(ASOrder.recipeID))]
+        //[PXParent(typeof(Select<ASRecipe, Where<ASRecipe.dishID, Equal<Current<ASOrder.orderID>>>>))]
+        [PXSelector(typeof(Search<ASRecipe.refNbr,
+            Where<ASRecipe.dishID, Equal<Current<ASOrder.orderID>>, And<ASRecipe.isActive, Equal<True>>>>))]
+        public virtual string RecipeID { get; set; }
+        public abstract class recipeID : PX.Data.BQL.BqlString.Field<recipeID> { }
         #endregion
 
         #region Count

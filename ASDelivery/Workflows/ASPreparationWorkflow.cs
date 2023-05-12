@@ -70,7 +70,8 @@ namespace ASDelivery.Workflows
                                     .WithFieldStates(states => {})
                                     .WithActions(actions => // Open Action
                                     {
-                                        actions.Add(g => g.OpenAction, a => a.IsDuplicatedInToolbar());
+                                        actions.Add(g => g.PausedAction, a => a.IsDuplicatedInToolbar());
+                                        actions.Add(g => g.ClosedAction, a => a.IsDuplicatedInToolbar());
                                     });
                             });
                             fss.Add<States.paused>(flowState =>
@@ -81,7 +82,8 @@ namespace ASDelivery.Workflows
                                     })
                                     .WithActions(actions => // Paused Action
                                     {
-                                        actions.Add(g => g.PausedAction, a => a.IsDuplicatedInToolbar());
+                                        actions.Add(g => g.OpenAction, a => a.IsDuplicatedInToolbar());
+                                        actions.Add(g => g.ClosedAction, a => a.IsDuplicatedInToolbar());
                                     });
                             });
                             fss.Add<States.closed>(flowState =>
@@ -92,7 +94,8 @@ namespace ASDelivery.Workflows
                                     })
                                     .WithActions(actions => // Closed Action
                                     {
-                                        actions.Add(g => g.ClosedAction, a => a.IsDuplicatedInToolbar());
+                                        actions.Add(g => g.OnHoldAction, a => a.IsDuplicatedInToolbar());
+                                        actions.Add(g => g.OpenAction, a => a.IsDuplicatedInToolbar());
                                     });
                             });
                         }).WithTransitions(transitions => // Transitions
@@ -103,18 +106,18 @@ namespace ASDelivery.Workflows
                             });
                             transitions.AddGroupFrom<States.open>(ts =>
                             {
-                                ts.Add(t => t.To<States.paused>().IsTriggeredOn(g => g.OpenAction));
-                                //ts.Add(t => t.To<States.closed>().IsTriggeredOn(g => g.ClosedAction));
+                                ts.Add(t => t.To<States.paused>().IsTriggeredOn(g => g.PausedAction));
+                                ts.Add(t => t.To<States.closed>().IsTriggeredOn(g => g.ClosedAction));
                             });
                             transitions.AddGroupFrom<States.paused>(ts =>
                             {
-                                //ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
-                                //ts.Add(t => t.To<States.closed>().IsTriggeredOn(g => g.ClosedAction));
+                                ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
+                                ts.Add(t => t.To<States.closed>().IsTriggeredOn(g => g.ClosedAction));
                             });
                             transitions.AddGroupFrom<States.closed>(ts =>
                             {
-                                //ts.Add(t => t.To<States.onHold>().IsTriggeredOn(g => g.OnHoldAction));
-                                //ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
+                                ts.Add(t => t.To<States.onHold>().IsTriggeredOn(g => g.OnHoldAction));
+                                ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
                             });
                         }))
                     .WithActions(actions => // Actions

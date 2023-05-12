@@ -24,6 +24,7 @@ namespace ASDelivery
         #region EmployerID
         [PXDBInt()]
         [PXEPEmployeeSelector()]
+        //[PXParent(typeof(Select<EPEmployee, Where<EPEmployee.bAccountID, Equal<Current<employerID>>>>))]
         [PXUIField(DisplayName = "Disher")]
         //[PXSelector(typeof(Search<EPEmployee.acctCD>))]
         public virtual int? EmployerID { get; set; }

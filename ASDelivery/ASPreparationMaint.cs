@@ -29,6 +29,12 @@ namespace ASDelivery
             rev.FinishOfPreparation = row.FinishOfPreparation;
             History.Update(rev);
         }
+
+        //protected void _(Events.FieldUpdated<ASOrder, ASOrder.orderID> e)
+        //{
+        //    ASOrder order = e.Row;
+        //    order.RecipeID = typeof(Search<ASRecipe, Where<ASRecipe.dishID, Equal<ASOrder.orderID>>>);
+        //}
         #endregion
 
         #region Actions
