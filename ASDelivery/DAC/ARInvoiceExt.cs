@@ -29,52 +29,18 @@ using System;
 namespace ASDelivery
 {
     // Acuminator disable once PX1016 ExtensionDoesNotDeclareIsActiveMethod extension should be constantly active
-    public sealed class ARRegisterExt : PXCacheExtension<PX.Objects.AR.ARRegister>
+    public sealed class ARRegisterExt : PXCacheExtension<PX.Objects.AR.ARInvoice>
     {
-        #region Constants
-        public static class States
-        {
-            public const string OnHold = ASDeliveryConstants.OnHold;
-            public const string Open = ASDeliveryConstants.Open;
-            public const string Canceled = ASDeliveryConstants.Canceled;
-            public const string Closed = ASDeliveryConstants.Closed;
-            public const string Cooking = ASDeliveryConstants.Cooking;
-            public const string Cooked = ASDeliveryConstants.Cooked;
-            public const string Delivering = ASDeliveryConstants.Delivering;
-            public const string Delivered = ASDeliveryConstants.Delivered;
-            public class onHold : PX.Data.BQL.BqlString.Constant<onHold>
-            {
-                public onHold() : base(OnHold) { }
-            }
-            public class open : PX.Data.BQL.BqlString.Constant<open>
-            {
-                public open() : base(Open) { }
-            }
-            public class canceled : PX.Data.BQL.BqlString.Constant<canceled>
-            {
-                public canceled() : base(Canceled) { }
-            }
-            public class closed : PX.Data.BQL.BqlString.Constant<closed>
-            {
-                public closed() : base(Closed) { }
-            }
-            public class cooking : PX.Data.BQL.BqlString.Constant<cooking>
-            {
-                public cooking() : base(Cooking) { }
-            }
-            public class cooked : PX.Data.BQL.BqlString.Constant<cooked>
-            {
-                public cooked() : base(Cooked) { }
-            }
-            public class delivering : PX.Data.BQL.BqlString.Constant<delivering>
-            {
-                public delivering() : base(Delivering) { }
-            }
-            public class delivered : PX.Data.BQL.BqlString.Constant<delivered>
-            {
-                public delivered() : base(Delivered) { }
-            }
-        }
+        #region Status
+        [PXMergeAttributes(Method = MergeMethod.Replace)]
+        [PXDBString(1, IsFixed = true)]
+        [PXDefault("OH", PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXUIField(DisplayName = "Status", Visibility = PXUIVisibility.SelectorVisible, Enabled = false)]
+        [ASDeliveryStates.List]
+        public string Status { get; set; }
+        public abstract class status : PX.Data.BQL.BqlString.Field<status> { }
+
         #endregion
+        
     }
 }

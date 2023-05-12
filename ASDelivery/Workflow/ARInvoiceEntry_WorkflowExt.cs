@@ -16,8 +16,8 @@ namespace ASDelivery
 {
     using State = ARDocStatus;
     using Self = ARInvoiceEntry_WorkflowExt;
-    using States = ARRegisterExt.States;
-    public class ARInvoiceEntry_WorkflowExt : PXGraphExtension<ARInvoiceEntry_Workflow, ARInvoiceEntry>
+    using States = ASDeliveryStates;
+    public class ARInvoiceEntry_WorkflowExt : PXGraphExtension<ARInvoiceEntry>
     {
         public static bool IsActive()
         {
@@ -34,34 +34,26 @@ namespace ASDelivery
             #endregion
 
             var holdAction = context.ActionDefinitions
-                .CreateExisting<Self>(g => g.onHold, a => a
-                .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.onHold, a => a);
             var openAction = context.ActionDefinitions
-                .CreateExisting<Self>(g => g.open, a => a
-                .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.open, a => a);
             var cancelAction = context.ActionDefinitions
-                .CreateExisting<Self>(g => g.cancel, a => a
-                .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.cancel, a => a);
             var cookingAction = context.ActionDefinitions
                 .CreateExisting<Self>(g => g.cooking, a => a
-                .WithCategory(processingCategory)
                 .PlaceAfter(g => g.payInvoice));
             var cookedAction = context.ActionDefinitions
-                .CreateExisting<Self>(g => g.cooked, a => a
-                .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.cooked, a => a);
             var deliveringAction = context.ActionDefinitions
-                .CreateExisting<Self>(g => g.delivering, a => a
-                .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.delivering, a => a);
             var deliveredAction = context.ActionDefinitions
-                .CreateExisting<Self>(g => g.delivered, a => a
-                .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.delivered, a => a);
             var closeAction = context.ActionDefinitions
-                .CreateExisting<Self>(g => g.close, a => a
-                .WithCategory(processingCategory));
+                .CreateExisting<Self>(g => g.close, a => a);
 
             config.GetScreenConfigurationContext<ARInvoiceEntry, ARInvoice>().UpdateScreenConfigurationFor(
                 screen =>
-                screen
+                    screen
                     .AddDefaultFlow(flow =>
                         flow
                        .WithFlowStates(fss =>
@@ -69,7 +61,7 @@ namespace ASDelivery
                            fss.Add<States.onHold>(flowState =>
                            {
                                return flowState
-                                   .IsInitial()
+                                   //.IsInitial()
                                    .WithActions(actions =>
                                    {
                                        actions.Add(openAction, a => a.IsDuplicatedInToolbar()
@@ -174,6 +166,9 @@ namespace ASDelivery
                     })
                     .WithActions(actions =>
                     {
+                        actions.Add(holdAction);
+                        actions.Add(openAction);
+                        actions.Add(cancelAction);
                         actions.Add(cookingAction);
                         actions.Add(cookedAction);
                         actions.Add(deliveringAction);

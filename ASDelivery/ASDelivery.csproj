@@ -62,9 +62,11 @@
     <Compile Include="DAC\ASIngredients.cs" />
     <Compile Include="ASSetupMaint.cs" />
     <Compile Include="DAC\ASSetup.cs" />
-    <Compile Include="Helper\Constants.cs" />
+    <Compile Include="Helper\ASDeliveryStates.cs" />
     <Compile Include="Helper\Messages.cs" />
     <Compile Include="DAC\ARInvoiceExt.cs" />
+    <Compile Include="ASControllerWorkplaceMaint.cs" />
+    <Compile Include="DAC\ASControllerWorkplace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Workflow\ARInvoiceEntry_WorkflowExt.cs" />
   </ItemGroup>
