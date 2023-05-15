@@ -34,7 +34,7 @@ namespace ASDelivery
         #region Status
         [PXMergeAttributes(Method = MergeMethod.Replace)]
         [PXDBString(1, IsFixed = true)]
-        [PXDefault("OH", PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXDefault("H", PersistingCheck = PXPersistingCheck.Nothing)]
         [PXUIField(DisplayName = "Status", Visibility = PXUIVisibility.SelectorVisible, Enabled = false)]
         [ASDeliveryStates.List]
         public string Status { get; set; }

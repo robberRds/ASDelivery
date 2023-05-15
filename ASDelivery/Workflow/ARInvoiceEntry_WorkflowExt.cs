@@ -53,7 +53,8 @@ namespace ASDelivery
 
             config.GetScreenConfigurationContext<ARInvoiceEntry, ARInvoice>().UpdateScreenConfigurationFor(
                 screen =>
-                    screen
+                    screen.StateIdentifierIs<ARRegisterExt.status>()
+                    .RemoveDefaultFlow()
                     .AddDefaultFlow(flow =>
                         flow
                        .WithFlowStates(fss =>
@@ -61,7 +62,7 @@ namespace ASDelivery
                            fss.Add<States.onHold>(flowState =>
                            {
                                return flowState
-                                   //.IsInitial()
+                                   .IsInitial()
                                    .WithActions(actions =>
                                    {
                                        actions.Add(openAction, a => a.IsDuplicatedInToolbar()

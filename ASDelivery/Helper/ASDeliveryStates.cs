@@ -21,7 +21,7 @@ namespace ASDelivery
         public class onHold : BqlType<IBqlString, string>.Constant<onHold>
         {
             public onHold()
-                : base("OH")
+                : base("H")
             {
             }
         }
@@ -29,7 +29,7 @@ namespace ASDelivery
         public class open : BqlType<IBqlString, string>.Constant<open>
         {
             public open()
-                : base("OP")
+                : base("O")
             {
             }
         }
@@ -37,7 +37,7 @@ namespace ASDelivery
         public class canceled : BqlType<IBqlString, string>.Constant<canceled>
         {
             public canceled()
-                : base("CN")
+                : base("C")
             {
             }
         }
@@ -45,21 +45,21 @@ namespace ASDelivery
         public class closed : BqlType<IBqlString, string>.Constant<closed>
         {
             public closed()
-                : base("CL")
+                : base("L")
             {
             }
         }
         public class cooking : BqlType<IBqlString, string>.Constant<cooking>
         {
             public cooking()
-                : base("CG")
+                : base("K")
             {
             }
         }
         public class cooked : BqlType<IBqlString, string>.Constant<cooked>
         {
             public cooked()
-                : base("CD")
+                : base("E")
             {
             }
         }
@@ -67,48 +67,49 @@ namespace ASDelivery
         public class delivering : BqlType<IBqlString, string>.Constant<delivering>
         {
             public delivering()
-                : base("DG")
+                : base("G")
             {
             }
         }
         public class delivered : BqlType<IBqlString, string>.Constant<delivered>
         {
             public delivered()
-                : base("DD")
+                : base("D")
             {
             }
         }
 
         private static readonly IEnumerable<ValueLabelPair> _valueLabelPairs = new ValueLabelList
         {
-            { "OH", "On Hold" },
-            { "OP", "Open" },
-            { "CN", "Canceled" },
-            { "CL", "Closed" },
-            { "CG", "Cooking" },
-            { "CD", "Cooked" },
-            { "DG", "Delivering" },
-            { "DD", "Delivered" }
+            { "H", "OnHold" },
+            { "O", "Open" },
+            { "C", "Canceled" },
+            { "L", "Closed" },
+            { "K", "Cooking" },
+            { "E", "Cooked" },
+            { "G", "Delivering" },
+            { "D", "Delivered" }
         };
 
         public static readonly string[] Values = new string[8]
         {
-            "OH", "OP", "CN", "CL", "CG", "CD", "DG", "DD"
+            "H", "O", "C", "L", "K", "E", "G", "D"
         };
 
         public static readonly string[] Labels = new string[8]
         {
-            "On Hold", "Open", "Canceled", "Closed", "Cooking", "Cooked", "Delivering", "Delivered"
+            "OnHold", "Open", "Canceled", "Closed", "Cooking", "Cooked", "Delivering", "Delivered"
         };
 
-        public const string OnHold = "OH";
-        public const string Open = "OP";
-        public const string Canceled = "CN";
-        public const string Cooking = "CG";
-        public const string Cooked = "CD";
-        public const string Delivering = "DG";
-        public const string Delivered = "DD";
-        public const string Closed = "CL";
+        public const string OnHold = "H";
+        public const string Open = "O";
+        public const string Canceled = "C";
+        public const string Closed = "L";
+        public const string Cooking = "K";
+        public const string Cooked = "E";
+        public const string Delivering = "G";
+        public const string Delivered = "D";
+
 
         public IEnumerable<ValueLabelPair> ValueLabelPairs => _valueLabelPairs;
     }

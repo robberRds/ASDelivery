@@ -1,5 +1,7 @@
 using System;
 using PX.Data;
+using PX.Objects.AR;
+using PX.Objects.CS;
 
 namespace ASDelivery
 {
@@ -8,15 +10,21 @@ namespace ASDelivery
     public class ASControllerWorkplace : IBqlTable
     {
         #region RefNbr
-        [PXDBString(15, IsKey = true, IsUnicode = true, InputMask = "")]
-        [PXUIField(DisplayName = "Ref Nbr")]
+        [PXDBString(15, IsKey = true, IsUnicode = true)]
+        [PXDefault(PersistingCheck = PXPersistingCheck.NullOrBlank)]
+        [PXUIField(DisplayName = "Ref Nbr.", Visibility = PXUIVisibility.SelectorVisible)]
+        //[AutoNumber(typeof(ASSetup.recipeNumbering), typeof(ASRecipe.createdDateTime))]
+        [PXSelector(typeof(Search<ASControllerWorkplace.refNbr>))]
         public virtual string RefNbr { get; set; }
         public abstract class refNbr : PX.Data.BQL.BqlString.Field<refNbr> { }
         #endregion
 
         #region InvoiceNbr
         [PXDBString(15, IsKey = true, IsUnicode = true, InputMask = "")]
-        [PXUIField(DisplayName = "Invoice Nbr")]
+        [PXUIField(DisplayName = "Invoice Nbr", Visibility = PXUIVisibility.SelectorVisible)]
+        [PXSelector(typeof(Search<ARInvoice.refNbr>),
+            SubstituteKey = typeof(ARInvoice.refNbr),
+            DescriptionField = typeof(ARInvoice.docDesc))]
         public virtual string InvoiceNbr { get; set; }
         public abstract class invoiceNbr : PX.Data.BQL.BqlString.Field<invoiceNbr> { }
         #endregion
