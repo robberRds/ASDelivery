@@ -9,16 +9,25 @@ namespace ASDelivery
     public class ASOrder : IBqlTable
     {
         #region RefNbr
-        [PXDBString()]
+        [PXDBString(15, IsKey = true, IsUnicode = true)]
         [PXDefault(typeof(ASPreparation.refNbr))]
+        [PXParent(typeof(Select<ASPreparation, Where<ASPreparation.refNbr, Equal<Current<ASOrder.refNbr>>>>))]
         public virtual string RefNbr { get; set; }
         public abstract class refNbr : PX.Data.BQL.BqlString.Field<refNbr> { }
+        #endregion
+
+        #region LineNbr
+        [PXDBInt(IsKey = true)]
+        [PXLineNbr(typeof(ASPreparation.recipeLineCntr))]
+        [PXUIField(DisplayName = "Ref Nbr.", Visible = false)]
+        public virtual int? LineNbr { get; set; }
+        public abstract class lineNbr : PX.Data.BQL.BqlInt.Field<lineNbr> { }
         #endregion
 
         #region OrderID
         [Inventory(DisplayName = "Dish")]
         [PXDefault(typeof(ASOrder.orderID))]
-        [PXParent(typeof(Select<ASPreparation, Where<ASPreparation.refNbr, Equal<Current<refNbr>>>>))]
+        //[PXParent(typeof(Select<ASPreparation, Where<ASPreparation.refNbr, Equal<Current<refNbr>>>>))]
         //[PXParent(typeof(Select<InventoryItem, Where<InventoryItem.inventoryID, Equal<Current<ASOrder.orderID>>>>))]
         [PXSelector(typeof(Search<InventoryItem.inventoryID,
             Where<InventoryItem.itemType, Equal<INItemTypes.finishedGood>>>),
@@ -44,14 +53,6 @@ namespace ASDelivery
         [PXUIField(DisplayName = "Count")]
         public virtual int? Count { get; set; }
         public abstract class count : PX.Data.BQL.BqlInt.Field<count> { }
-        #endregion
-
-        #region LineNbr
-        [PXDBInt(IsKey = true)]
-        [PXLineNbr(typeof(ASPreparation.recipeLineCntr))]
-        [PXUIField(DisplayName = "Ref Nbr.", Visibility = PXUIVisibility.SelectorVisible)]
-        public virtual int? LineNbr { get; set; }
-        public abstract class lineNbr : PX.Data.BQL.BqlInt.Field<lineNbr> { }
         #endregion
 
         #region CreatedByID

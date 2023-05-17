@@ -13,9 +13,9 @@ namespace ASDelivery
         #region RefNbr
         [PXDBString(50, IsKey = true, IsUnicode = true)]
         [PXDefault(PersistingCheck = PXPersistingCheck.NullOrBlank)]
-        [PXUIField(DisplayName = "Ref Nbr.", Visibility = PXUIVisibility.SelectorVisible)]
+        [PXUIField(DisplayName = "Ref Nbr.")]
+        [PXSelector(typeof(Search<ASPreparation.refNbr>))]
         [AutoNumber(typeof(ASSetup.orderNumbering), typeof(createdDateTime))]
-        [PXSelector(typeof(Search<refNbr>))]
 
         public virtual string RefNbr { get; set; }
         public abstract class refNbr : PX.Data.BQL.BqlString.Field<refNbr> { }
@@ -56,14 +56,14 @@ namespace ASDelivery
         #endregion
 
         #region StartOfPreparation
-        [PXDBDate()]
+        [PXDBDateAndTime()]
         [PXUIField(DisplayName = "Start Of Preparation")]
         public virtual DateTime? StartOfPreparation { get; set; }
         public abstract class startOfPreparation : PX.Data.BQL.BqlDateTime.Field<startOfPreparation> { }
         #endregion
 
         #region FinishOfPreparation
-        [PXDBDate()]
+        [PXDBDateAndTime()]
         [PXUIField(DisplayName = "Finish Of Preparation")]
         public virtual DateTime? FinishOfPreparation { get; set; }
         public abstract class finishOfPreparation : PX.Data.BQL.BqlDateTime.Field<finishOfPreparation> { }

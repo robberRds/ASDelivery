@@ -94,8 +94,8 @@ namespace ASDelivery.Workflows
                                     })
                                     .WithActions(actions => // Closed Action
                                     {
-                                        actions.Add(g => g.OnHoldAction, a => a.IsDuplicatedInToolbar());
-                                        actions.Add(g => g.OpenAction, a => a.IsDuplicatedInToolbar());
+                                        //actions.Add(g => g.OnHoldAction, a => a.IsDuplicatedInToolbar());
+                                        //actions.Add(g => g.OpenAction, a => a.IsDuplicatedInToolbar());
                                     });
                             });
                         }).WithTransitions(transitions => // Transitions
@@ -116,8 +116,8 @@ namespace ASDelivery.Workflows
                             });
                             transitions.AddGroupFrom<States.closed>(ts =>
                             {
-                                ts.Add(t => t.To<States.onHold>().IsTriggeredOn(g => g.OnHoldAction));
-                                ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
+                                //ts.Add(t => t.To<States.onHold>().IsTriggeredOn(g => g.OnHoldAction));
+                                //ts.Add(t => t.To<States.open>().IsTriggeredOn(g => g.OpenAction));
                             });
                         }))
                     .WithActions(actions => // Actions
