@@ -1,8 +1,10 @@
-﻿<Sql TableName="ASSetup" TableSchemaXml="#CDATA">
-    <CDATA name="TableSchemaXml"><![CDATA[<table name="ASSetup">
+﻿<Sql TableName="ASHistory" TableSchemaXml="#CDATA">
+    <CDATA name="TableSchemaXml"><![CDATA[<table name="ASHistory">
   <col name="CompanyID" type="Int" default="Zero" />
-  <col name="RecipeNumbering" type="NVarChar(10)" />
-  <col name="OrderNumbering" type="NVarChar(10)" />
+  <col name="RefNbr" type="NVarChar(50)" nullable="true" />
+  <col name="EmployerID" type="Int" nullable="true" />
+  <col name="StartOfPreparation" type="DateTime" />
+  <col name="FinishOfPreparation" type="DateTime" />
   <col name="CreatedByID" type="UniqueIdentifier" />
   <col name="CreatedByScreenID" type="Char(8)" />
   <col name="CreatedDateTime" type="DateTime" />
@@ -11,11 +13,11 @@
   <col name="LastModifiedDateTime" type="DateTime" />
   <col name="tstamp" type="Timestamp" />
   <col name="NoteID" type="UniqueIdentifier" nullable="true" />
-  <index name="ASSetup_NoteID" unique="true">
+  <index name="ASHistory_NoteID" unique="true">
     <col name="NoteID" />
     <col name="CompanyID" />
   </index>
-  <index name="PK_ASSetup" clustered="true" primary="true" unique="true">
+  <index name="PK_ASHistory_1" clustered="true" primary="true" unique="true">
     <col name="CompanyID" />
   </index>
 </table>]]></CDATA>

@@ -14,22 +14,33 @@
 <asp:Content ID="cont2" ContentPlaceHolderID="phF" Runat="Server">
 	<px:PXFormView ID="form" runat="server" DataSourceID="ds" DataMember="Preparation" Width="100%" Height="100px" AllowAutoHide="false">
 		<Template>
-			<px:PXLayoutRule ID="PXLayoutRule1" runat="server" StartRow="True"></px:PXLayoutRule>
-			<px:PXSelector runat="server" ID="CstPXSelector1" DataField="EmployerID" /></Template>
+			<px:PXLayoutRule runat="server" ID="CstPXLayoutRule14" StartColumn="True" />
+			<px:PXSelector runat="server" ID="CstPXSelector6" DataField="RefNbr" ></px:PXSelector>
+			<px:PXSelector runat="server" ID="CstPXSelector1" DataField="EmployerID" ></px:PXSelector>
+			<px:PXDropDown runat="server" ID="CstPXDropDown7" DataField="Status" ></px:PXDropDown>
+			<px:PXLayoutRule runat="server" ID="CstPXLayoutRule15" StartColumn="True" />
+			<px:PXDateTimeEdit Enabled="False" Size="15px" runat="server" ID="CstPXDateTimeEdit10" DataField="StartOfPreparation" ></px:PXDateTimeEdit>
+			<px:PXDateTimeEdit Enabled="False" Size="15px" runat="server" ID="CstPXDateTimeEdit9" DataField="FinishOfPreparation" ></px:PXDateTimeEdit></Template>
 	</px:PXFormView>
 </asp:Content>
 <asp:Content ID="cont3" ContentPlaceHolderID="phG" Runat="Server">
-	<px:PXGrid ID="grid" runat="server" DataSourceID="ds" Width="100%" Height="150px" SkinID="Details" AllowAutoHide="false">
-		<Levels>
-			<px:PXGridLevel DataMember="Order">
-			    <Columns>
-				<px:PXGridColumn DataField="Order" Width="300" />
-				<px:PXGridColumn DataField="RecipeID" Width="300" />
-				<px:PXGridColumn DataField="Count" Width="150" /></Columns>
-			</px:PXGridLevel>
-		</Levels>
-		<AutoSize Container="Window" Enabled="True" MinHeight="150" />
-		<ActionBar >
-		</ActionBar>
-	</px:PXGrid>
-</asp:Content>
+	<px:PXTab runat="server" ID="tab">
+		<Items>
+			<px:PXTabItem Text="Dishes" >
+				<Template>
+					<px:PXGrid runat="server" ID="CstPXGrid17" Height="150px" SkinID="Details" Width="100%">
+						<Levels>
+							<px:PXGridLevel DataMember="Order" >
+								<Columns>
+									<px:PXGridColumn CommitChanges="True" DataField="OrderID" Width="200px" ></px:PXGridColumn>
+									<px:PXGridColumn DataField="RecipeID" Width="200px" ></px:PXGridColumn>
+									<px:PXGridColumn DataField="Count" Width="150px" ></px:PXGridColumn></Columns></px:PXGridLevel></Levels></px:PXGrid></Template></px:PXTabItem>
+			<px:PXTabItem Text="History">
+				<Template>
+					<px:PXGrid Height="150px" SkinID="Details" Width="100%" runat="server" ID="CstPXGrid18">
+						<Levels>
+							<px:PXGridLevel DataMember="History" >
+								<Columns>
+									<px:PXGridColumn DataField="EmployerID" Width="100" ></px:PXGridColumn>
+									<px:PXGridColumn DataField="StartOfPreparation" Width="150" ></px:PXGridColumn>
+									<px:PXGridColumn DataField="FinishOfPreparation" Width="150" ></px:PXGridColumn></Columns></px:PXGridLevel></Levels></px:PXGrid></Template></px:PXTabItem></Items></px:PXTab></asp:Content>

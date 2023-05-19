@@ -25,8 +25,18 @@
         </layout>
         <data>
             <SiteMap>
-                <row Position="21518" Title="Project Settings Page" Url="~/Pages/AS/AS101000.aspx" ScreenID="AS101000" NodeID="417f88e3-60d6-4fe3-9d5a-4d0ee04498c8" ParentID="00000000-0000-0000-0000-000000000000" />
+                <row Position="21518" Title="Project Settings Page" Url="~/Pages/AS/AS101000.aspx" ScreenID="AS101000" NodeID="417f88e3-60d6-4fe3-9d5a-4d0ee04498c8" ParentID="00000000-0000-0000-0000-000000000000">
+                    <MUIScreen IsPortal="0" WorkspaceID="c972a75c-fc84-477f-b164-438fba18664e" Order="10" SubcategoryID="32130442-2305-4394-9389-cf915b191d2a" />
+                </row>
             </SiteMap>
+            <MUIWorkspace>
+                <row IsPortal="0" WorkspaceID="c972a75c-fc84-477f-b164-438fba18664e" Order="38" Title="Delivery" Icon="shopping_cart" IsSystem="0">
+                    <MUIFavoriteWorkspace IsPortal="0" Username="" IsFavorite="1" />
+                </row>
+            </MUIWorkspace>
+            <MUISubcategory>
+                <row IsPortal="0" SubcategoryID="32130442-2305-4394-9389-cf915b191d2a" Order="820" Name="Processes" Icon="" IsSystem="0" />
+            </MUISubcategory>
         </data>
     </data-set>
 </SiteMapNode>
