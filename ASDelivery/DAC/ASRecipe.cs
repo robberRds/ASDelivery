@@ -48,7 +48,7 @@ namespace ASDelivery
         #endregion
         #region IsActive
         [PXDBBool]
-        [PXDefault(false, PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXDefault(true, PersistingCheck = PXPersistingCheck.Nothing)]
         [PXUIField(DisplayName = "Active")]
         public virtual bool? IsActive { get; set; }
         public abstract class isActive : PX.Data.BQL.BqlBool.Field<isActive> { }
