@@ -25,8 +25,17 @@
         </layout>
         <data>
             <SiteMap>
-                <row Position="21519" Title="Controller Workplace" Url="~/Pages/AS/AS203000.aspx" ScreenID="AS203000" NodeID="3204c4d4-3e74-499e-bdd2-0e3b583515bc" ParentID="00000000-0000-0000-0000-000000000000" />
+                <row Position="21519" Title="Controller Workplace" Url="~/Pages/AS/AS203000.aspx" ScreenID="AS203000" NodeID="3204c4d4-3e74-499e-bdd2-0e3b583515bc" ParentID="00000000-0000-0000-0000-000000000000">
+                    <MUIScreen IsPortal="0" WorkspaceID="5f140513-cd3b-44c9-ac5f-c84b554fbd98" Order="7.5" SubcategoryID="aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa">
+                        <MUIPinnedScreen IsPortal="0" Username="" IsPinned="1" />
+                    </MUIScreen>
+                </row>
             </SiteMap>
+            <MUIWorkspace>
+                <row IsPortal="0" WorkspaceID="5f140513-cd3b-44c9-ac5f-c84b554fbd98" Order="38" Title="Delivery" Icon="shopping_cart" IsSystem="0">
+                    <MUIFavoriteWorkspace IsPortal="0" Username="" IsFavorite="1" />
+                </row>
+            </MUIWorkspace>
         </data>
     </data-set>
 </SiteMapNode>
